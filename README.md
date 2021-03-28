@@ -41,8 +41,18 @@ Any new tables or records that we add into the database will be removed after yo
 ```sql
 CREATE TABLE person ( person_id SERIAL PRIMARY KEY, name VARCHAR(200), age INTEGER, height INTEGER, city VARCHAR(200), favorite_color VARCHAR(200) );
 ```
-
 </details>
+
+
+CREATE TABLE person (
+  person_id SERIAL PRIMARY KEY,
+  name VARCHAR(200),
+  age INTEGER,
+  height INTEGER,
+  city VARCHAR(200),
+  favorite_color VARCHAR(200)
+);
+  
 
 <details>
 
@@ -54,6 +64,16 @@ INSERT INTO person ( name, age, height, city, favorite_color ) VALUES ( 'First L
 
 </details>
 
+
+  INSERT INTO person (name, age, height, city, favorite_color)
+  VALUES ('Lexi Dutson', 21, 48, 'Salt Lake City', 'pink'),
+    ('Ryan Dutson', 23, 50, 'Draper', 'blue'),
+    ('Jax Peterson', 15, 55, 'Park City', 'green'),
+    ('Cal Peterson', 13, 49, 'Filmore', 'blue'),
+    ('Reagan Dutson', 25, 55, 'Sandy', 'aqua')
+    ;
+
+
 <details>
 
 <summary> <code> #3 </code> </summary>
@@ -63,6 +83,18 @@ SELECT * FROM person ORDER BY height DESC;
 ```
 
 </details>
+SELECT * FROM person ORDER BY height DESC;
+
+Query Results
+Row count: 5
+
+person_id	name	age	height	city	favorite_color
+3	Jax Peterson	15	55	    Park City	green
+5	Reagan Dutson	25	55	    Sandy	aqua
+2	Ryan Dutson	    23	50	    Draper	blue
+4	Cal Peterson	13	49	    Filmore	blue
+1	Lexi Dutson	    21	48	    Salt Lake City	pink
+
 
 <details>
 
@@ -74,6 +106,18 @@ SELECT * FROM person ORDER BY height ASC;
 
 </details>
 
+SELECT * FROM person ORDER BY height ASC;
+
+
+person_id	name	age	height	city	favorite_color
+1	Lexi Dutson	    21	48	    Salt Lake City	pink
+4	Cal Peterson	13	49	    Filmore	blue
+2	Ryan Dutson	    23	50	    Draper	blue
+3	Jax Peterson	15	55	    Park City	green
+5	Reagan Dutson	25	55	    Sandy	aqua
+
+
+
 <details>
 
 <summary> <code> #5 </code> </summary>
@@ -83,6 +127,20 @@ SELECT * FROM person ORDER BY age DESC;
 ```
 
 </details>
+SELECT * FROM person ORDER BY age DESC;
+
+Query Results
+Row count: 5
+
+person_id	name	age	height	city	favorite_color
+5	Reagan Dutson	25	55	Sandy	aqua
+2	Ryan Dutson	    23	50	Draper	blue
+1	Lexi Dutson	    21	48	Salt Lake City	pink
+3	Jax Peterson	15	55	Park City	green
+4	Cal Peterson	13	49	Filmore	blue
+
+
+
 
 <details>
 
@@ -93,6 +151,16 @@ SELECT * FROM person WHERE age > 20;
 ```
 
 </details>
+SELECT * FROM person WHERE age > 20;
+
+Query Results
+Row count: 3
+
+person_id	name	age	height	city	favorite_color
+1	Lexi Dutson	    21	48	    Salt Lake City	pink
+2	Ryan Dutson	    23	50	    Draper	blue
+5	Reagan Dutson	25	55	    Sandy	aqua
+
 
 <details>
 
@@ -103,6 +171,10 @@ SELECT * FROM person WHERE age = 18;
 ```
 
 </details>
+SELECT * FROM person WHERE age = 18;
+
+Query Results
+Query ran successfully. 0 rows to display.
 
 <details>
 
@@ -113,7 +185,14 @@ SELECT * FROM person WHERE age < 20 OR age > 30;
 ```
 
 </details>
+SELECT * FROM person WHERE age < 20 OR age > 30;
 
+Query Results
+Row count: 2
+
+person_id	name	age	height	city	favorite_color
+3	Jax Peterson	15	55	    Park City	green
+4	Cal Peterson	13	49	    Filmore	    blue
 <details>
 
 <summary> <code> #9 </code> </summary>
@@ -133,7 +212,17 @@ SELECT * FROM person WHERE favorite_color != 'red';
 ```
 
 </details>
+SELECT * FROM person WHERE age != 27;
 
+Query Results
+Row count: 5
+
+person_id	name	age	height	city	favorite_color
+1	Lexi Dutson	    21	48	    Salt Lake City	pink
+2	Ryan Dutson	    23	50	    Draper	        blue
+3	Jax Peterson	15	55	    Park City	    green
+4	Cal Peterson	13	49	    Filmore	        blue
+5	Reagan Dutson	25	55	    Sandy	        aqua
 <details>
 
 <summary> <code> #11 </code> </summary>
@@ -143,7 +232,15 @@ SELECT * FROM person WHERE favorite_color != 'red' AND favorite_color != 'blue';
 ```
 
 </details>
+SELECT * FROM person WHERE favorite_color != 'red' AND favorite_color != 'blue';
 
+Query Results
+Row count: 3
+
+person_id	name	age	height	city	favorite_color
+1	Lexi Dutson	    21	48	    Salt Lake City	pink
+3	Jax Peterson	15	55	    Park City	    green
+5	Reagan Dutson	25	55	    Sandy	        aqua
 <details>
 
 <summary> <code> #12 </code> </summary>
@@ -153,6 +250,13 @@ SELECT * FROM person WHERE favorite_color = 'orange' OR favorite_color = 'green'
 ```
 
 </details>
+SELECT * FROM person WHERE favorite_color = 'orange' OR favorite_color = 'green';
+
+Query Results
+Row count: 1
+
+person_id	name	age	height	city	favorite_color
+3	Jax Peterson	15	55	    Park City	green
 
 <details>
 
@@ -163,6 +267,15 @@ SELECT * FROM person WHERE favorite_color IN ( 'orange', 'green', 'blue' );
 ```
 
 </details>
+SELECT * FROM person WHERE favorite_color IN ( 'orange', 'green', 'blue' );
+
+Query Results
+Row count: 3
+
+person_id	name	age	height	city	favorite_color
+2	Ryan Dutson	    23	50	Draper	    blue
+3	Jax Peterson	15	55	Park City	green
+4	Cal Peterson	13	49	Filmore	    blue
 
 <details>
 
@@ -173,6 +286,10 @@ SELECT * FROM person WHERE favorite_color IN ( 'yellow', 'purple' )
 ```
 
 </details>
+SELECT * FROM person WHERE favorite_color IN ( 'yellow', 'purple' )
+
+Query Results
+Query ran successfully. 0 rows to display.
 
 </details>
 
@@ -205,6 +322,16 @@ CREATE TABLE orders ( order_id SERIAL PRIMARY KEY, person_id INTEGER, product_na
 
 </details>
 
+CREATE TABLE orders (
+  order_id SERIAL PRIMARY KEY,
+  person_id INTEGER,
+  product_name VARCHAR(200),
+  product_price NUMERIC,
+  quantity INTEGER
+  );
+
+
+
 <details>
 
 <summary> <code> #2 </code> </summary>
@@ -215,6 +342,15 @@ INSERT INTO orders ( person_id, product_name, product_price, quantity ) VALUES (
 
 </details>
 
+INSERT INTO orders ( person_id, product_name, product_price, quantity ) 
+  VALUES ( 100, 'Coffee', 5.12, 1 ),
+  (101, 'Lattee', 6.25, 3),
+  (102, 'Cafe Misto', 3.25, 1),
+  (103, 'Caramel Machiatto', 4.5, 5),
+  (104, 'Mocha Frappe', 5.75, 2);
+
+Query Results
+Query ran successfully. 0 rows to display.
 <details>
 
 <summary> <code> #3 </code> </summary>
@@ -224,7 +360,17 @@ SELECT * FROM orders;
 ```
 
 </details>
+SELECT * FROM orders;
 
+Query Results
+Row count: 5
+
+order_id	person_id	product_name	product_price	quantity
+1	        100	        Coffee	            5.12	    1
+2	        101	        Lattee	            6.25	    3
+3	        102	        Cafe Misto	        3.25	    1
+4	        103	        Caramel Machiatto	4.5	        5
+5	        104	        Mocha Frappe	    5.75	    2
 <details>
 
 <summary> <code> #4 </code> </summary>
@@ -234,7 +380,13 @@ SELECT SUM(quantity) FROM orders;
 ```
 
 </details>
+SELECT SUM(quantity) FROM orders;
 
+Query Results
+Row count: 1
+
+sum
+12
 <details>
 
 <summary> <code> #5 </code> </summary>
@@ -244,7 +396,13 @@ SELECT SUM(product_price * quantity) FROM orders;
 ```
 
 </details>
+SELECT SUM(product_price * quantity) FROM orders;
 
+Query Results
+Row count: 1
+
+sum
+61.12
 <details>
 
 <summary> <code> #6 </code> </summary>
@@ -255,6 +413,14 @@ SELECT SUM(product_price * quantity) FROM orders WHERE person_id = 0;
 ```
 
 </details>
+SELECT SUM(product_price * quantity) FROM orders WHERE person_id = 103;
+
+Query Results
+Row count: 1
+
+sum
+22.5
+
 
 </details>
 
@@ -283,6 +449,9 @@ INSERT INTO artist ( name ) VALUES ( 'artist name' );
 ```
 
 </details>
+INSERT INTO artist ( name ) VALUES ( 'Eloise Didier' );
+INSERT INTO artist ( name ) VALUES ( 'Lexi Dutson' );
+INSERT INTO artist ( name ) VALUES ( 'Jax Peterson' );
 
 <details>
 
@@ -294,6 +463,21 @@ SELECT * FROM artist ORDER BY name DESC LIMIT 10;
 
 </details>
 
+Query Results
+Row count: 10
+
+artist_id	name
+155	    Zeca Pagodinho
+212	    Yo-Yo Ma
+168	    Youssou N'Dour
+255	    Yehudi Menuhin
+181	    Xis
+211	    Wilhelm Kempff
+154	    Whitesnake
+75	    Vinicius, Toquinho & Quarteto Em Cy
+73	    Vinícius E Qurteto Em Cy
+74	    Vinícius E Odette Lara
+
 <details>
 
 <summary> <code> #3 </code> </summary>
@@ -304,6 +488,18 @@ SELECT * FROM artist ORDER BY name ASC LIMIT 5;
 
 </details>
 
+SELECT * FROM artist ORDER BY name ASC LIMIT 5;
+
+Query Results
+Row count: 5
+
+artist_id	name
+230	        Aaron Copland & London Symphony Orchestra
+202	        Aaron Goldberg
+215	        Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner
+222	        Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair
+214	        Academy of St. Martin in the Fields & Sir Neville Marriner
+
 <details>
 
 <summary> <code> #4 </code> </summary>
@@ -313,7 +509,15 @@ SELECT * FROM artist WHERE name LIKE 'Black%';
 ```
 
 </details>
+SELECT * FROM artist WHERE name LIKE 'Black%';
 
+Query Results
+Row count: 3
+
+artist_id	name
+11	        Black Label Society
+12	        Black Sabbath
+169	        Black Eyed Peas
 <details>
 
 <summary> <code> #5 </code> </summary>
@@ -323,7 +527,17 @@ SELECT * FROM artist WHERE name LIKE '%Black%';
 ```
 
 </details>
+SELECT * FROM artist WHERE name LIKE '%Black%';
 
+Query Results
+Row count: 5
+
+artist_id	name
+11	        Black Label Society
+12	        Black Sabbath
+38	        Banda Black Rio
+137	        The Black Crowes
+169	        Black Eyed Peas
 </details>
 
 ## Table - employee
@@ -352,7 +566,17 @@ SELECT first_name, last_name FROM employee WHERE city = 'Calgary';
 ```
 
 </details>
+SELECT first_name, last_name FROM employee WHERE city = 'Calgary';
 
+Query Results
+Row count: 5
+
+first_name	last_name
+Nancy	    Edwards
+Jane	    Peacock
+Margaret	Park
+Steve	    Johnson
+Michael	    Mitchell
 <details>
 
 <summary> <code> #2 </code> </summary>
@@ -362,7 +586,13 @@ SELECT MAX(birth_date) from employee;
 ```
 
 </details>
+SELECT MAX(birth_date) from employee;
 
+Query Results
+Row count: 1
+
+max
+1973-08-29T00:00:00.000Z
 <details>
 
 <summary> <code> #3 </code> </summary>
@@ -372,7 +602,13 @@ SELECT MIN(birth_date) from employee;
 ```
 
 </details>
+SELECT MIN(birth_date) from employee;
 
+Query Results
+Row count: 1
+
+min
+1947-09-19T00:00:00.000Z
 <details>
 
 <summary> <code> #4 </code> </summary>
@@ -382,7 +618,15 @@ SELECT * FROM employee WHERE reports_to = 2;
 ```
 
 </details>
+SELECT * FROM employee WHERE reports_to = 2;
 
+Query Results
+Row count: 3
+
+employee_id	last_name	first_name	title	reports_to	birth_date	hire_date	address	city	state	country	postal_code	phone	fax	email
+3	Peacock	Jane	Sales Support Agent	2	1973-08-29T00:00:00.000Z	2002-04-01T00:00:00.000Z	1111 6 Ave SW	Calgary	AB	Canada	T2P 5M5	+1 (403) 262-3443	+1 (403) 262-6712	jane@chinookcorp.com
+4	Park	Margaret	Sales Support Agent	2	1947-09-19T00:00:00.000Z	2003-05-03T00:00:00.000Z	683 10 Street SW	Calgary	AB	Canada	T2P 5G3	+1 (403) 263-4423	+1 (403) 263-4289	margaret@chinookcorp.com
+5	Johnson	Steve	Sales Support Agent	2	1965-03-03T00:00:00.000Z	2003-10-17T00:00:00.000Z	7727B 41 Ave	Calgary	AB	Canada	T3B 1Y7	1 (780) 836-9987	1 (780) 836-9543	steve@chinookcorp.com
 <details>
 
 <summary> <code> #5 </code> </summary>
@@ -392,7 +636,13 @@ SELECT COUNT(*) FROM employee WHERE city = 'Lethbridge';
 ```
 
 </details>
+SELECT COUNT(*) FROM employee WHERE city = 'Lethbridge';
 
+Query Results
+Row count: 1
+
+count
+2
 </details>
 
 ## Table - invoice 
@@ -421,9 +671,12 @@ SELECT COUNT(*) FROM employee WHERE city = 'Lethbridge';
 ```sql
 SELECT COUNT(*) FROM invoice WHERE billing_country = 'USA';
 ```
-
 </details>
+Query Results
+Row count: 1
 
+count
+91
 <details>
 
 <summary> <code> #2 </code> </summary>
@@ -431,9 +684,12 @@ SELECT COUNT(*) FROM invoice WHERE billing_country = 'USA';
 ```sql
 SELECT MAX(total) FROM invoice;
 ```
-
 </details>
+Query Results
+Row count: 1
 
+max
+26
 <details>
 
 <summary> <code> #3 </code> </summary>
@@ -443,7 +699,11 @@ SELECT MIN(total) FROM invoice;
 ```
 
 </details>
+Query Results
+Row count: 1
 
+min
+1
 <details>
 
 <summary> <code> #4 </code> </summary>
@@ -453,7 +713,19 @@ SELECT * FROM invoice WHERE total > 5;
 ```
 
 </details>
+Query Results
+Row count: 179
 
+invoice_id	customer_id	invoice_date	billing_address	billing_city	billing_state	billing_country	billing_postal_code	total
+3	8	2009-01-03T00:00:00.000Z	Grétrystraat 63	Brussels		Belgium	1000	6
+4	14	2009-01-06T00:00:00.000Z	8210 111 ST NW	Edmonton	AB	Canada	T6G 2C7	9
+5	23	2009-01-11T00:00:00.000Z	69 Salem Street	Boston	MA	USA	2113	14
+10	46	2009-02-03T00:00:00.000Z	3 Chatham Street	Dublin	Dublin	Ireland		6
+11	52	2009-02-06T00:00:00.000Z	202 Hoxton Street	London		United Kingdom	N1 5LH	9
+12	2	2009-02-11T00:00:00.000Z	Theodor-Heuss-Straße 34	Stuttgart		Germany	70174	14
+17	25	2009-03-06T00:00:00.000Z	319 N. Frances Street	Madison	WI	USA	53703	6
+18	31	2009-03-09T00:00:00.000Z	194A Chain Lake Drive	Halifax	NS	Canada	B3S 1C5	9
+19	40	2009-03-14T00:00:00.000Z	8, Rue Hanovre	Paris		France	75002	14
 <details>
 
 <summary> <code> #5 </code> </summary>
@@ -463,7 +735,11 @@ SELECT COUNT(*) FROM invoice WHERE total < 5;
 ```
 
 </details>
+Query Results
+Row count: 1
 
+count
+233
 <details>
 
 <summary> <code> #6 </code> </summary>
@@ -473,7 +749,11 @@ SELECT COUNT(*) FROM invoice WHERE billing_state in ('CA', 'TX', 'AZ');
 ```
 
 </details>
+Query Results
+Row count: 1
 
+count
+35
 <details>
 
 <summary> <code> #7 </code> </summary>
@@ -483,7 +763,11 @@ SELECT AVG(total) FROM invoice;
 ```
 
 </details>
+Query Results
+Row count: 1
 
+avg
+5.7063106796116505
 <details>
 
 <summary> <code> #8 </code> </summary>
@@ -493,7 +777,11 @@ SELECT SUM(total) FROM invoice;
 ```
 
 </details>
+Query Results
+Row count: 1
 
+sum
+2351
 </details>
 
 
